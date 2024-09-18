@@ -26,3 +26,34 @@ export const createTask = async (state: FormState, formDate: FormData) => {
 
   redirect('/')
 }
+
+export const updateTask = async (id: string, state: FormState, formDate: FormData) => {
+  const updateTask: Task = {
+    title: formDate.get('title') as string,
+    description: formDate.get('discription') as string,
+    dueDate: formDate.get('dueDate') as string,
+    isCompleted: Boolean(formDate.get('isCompleted')) as boolean,
+  }
+
+  try {
+    await connectDB()
+    await TaskModel.updateOne({ _id: id }, updateTask)
+  } catch (error) {
+    state.error = 'タスクの更新に失敗しました'
+    return state
+  }
+
+  redirect('/')
+}
+
+export const deleteTask = async (id: string, state: FormState) => {
+  try {
+    await connectDB()
+    await TaskModel.deleteOne({ _id: id })
+  } catch (error) {
+    state.error = 'タスクの削除に失敗しました'
+    return state
+  }
+
+  redirect('/')
+}
