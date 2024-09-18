@@ -1,5 +1,5 @@
 import TaskCard from '@/components/TaskCard/TaskCard'
-import { TaskDocument } from '@/actions/task'
+import { TaskDocument } from '@/models/task'
 
 const getCompletedTasks = async (): Promise<TaskDocument[]> => {
   const response = await fetch(`${process.env.API_URL}/tasks/completed`, { cache: 'no-store' })
