@@ -1,4 +1,4 @@
-import { connectDB } from '@/utils/database'
+import { connectDB } from '@/utils/database';
 import { NextResponse } from 'next/server'
 import { TaskDocument, TaskModel } from './../../../models/task'
 
@@ -16,3 +16,4 @@ export const GET = async () => {
 }
 
 export const dynamic = 'force-dynamic'
+
